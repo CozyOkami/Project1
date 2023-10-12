@@ -1,0 +1,33 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#ifndef project1_header
+#define project1_header
+using namespace std;
+
+struct BookT {
+    string title;
+    vector<string> authors;
+    string catalogNumber;
+    vector<string> subjectHeadings;
+    string publisher;
+    int yearOfPublication;
+    bool isCirculating;
+};
+void SearchBySubject(const vector<BookT>& library, const string& subject) {
+    cout << "Books with the subject '" << subject << "':" << endl;
+    for (const BookT& book : library) {
+        for (const std::string& heading : book.subjectHeadings) {
+            if (heading == subject) {
+                cout << "Title: " << book.title << endl;
+                if (!book.authors.empty()) {
+                    cout << "Author: " << book.authors[0] << endl;
+                }
+                cout << "Catalog Number: " << book.catalogNumber << endl;
+                cout << endl;
+                break;
+            }
+        }
+    }
+}
+#endif
